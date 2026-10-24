@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <title>UUID 光核矩阵</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="aurora-bg">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <div class="app-container">
+    <header class="title-bar">
+      <div class="logo">
+        <span class="glow-text">UUID</span> 光核矩阵
+      </div>
+      <div class="header-right" style="-webkit-app-region: no-drag;">
+        <div class="status-toggle" id="status-toggle">
+          <span id="status-indicator">系统状态 ▼</span>
+        </div>
+        <div class="window-controls">
+          <div class="ctrl-btn minimize" onclick="window.api.minimize()">─</div>
+          <div class="ctrl-btn close" onclick="window.api.close()">✕</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="status-panel collapsed" id="status-panel">
+      <div class="status-row">
+        <span class="status-label">CDP 连接:</span>
+        <span id="status-text">未连接</span>
+        <div id="dot" class="status-dot"></div>
+      </div>
+      <div class="status-row">
+        <span class="status-label">当前网页:</span>
+        <span id="status-page">-</span>
+      </div>
+    </div>
+
+    <div class="view-tabs">
+      <button class="tab-btn active" data-target="view-main">会话管理</button>
+      <button class="tab-btn" data-target="view-logs">实时运行日志</button>
+    </div>
+
+    <main class="main-content" id="view-main">
+      <section class="glass-panel new-session-card">
+        <div class="glare"></div>
+        <div class="new-session-content">
+          <h2>开启新对话</h2>
+          <p class="desc">自动跳转网页、注入格式规范、静默等待并锁定新 UUID</p>
+          <button id="btn-new" class="btn primary large">立即初始化</button>
+          <button id="btn-backfill" class="btn" style="margin-left:8px;">回填标题</button>
+        </div>
+      </section>
+
+      <section class="glass-panel active-card compact">
+        <h2 class="toggle-title" data-target="active-body">当前激活会话 <span class="arrow">▼</span></h2>
+        <div class="collapse-content open" id="active-body">
+          <div class="active-info">
+            <h3>
+              <span id="active-title">未加载</span>
+              <span id="active-badge" class="badge" style="display:none;">已锁定</span>
+            </h3>
+          </div>
+          <div class="actions">
+            <button id="btn-unlock" class="btn danger" style="display:none;">解除锁定</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="glass-panel list-card collapsible" style="flex:1;">
+        <h2 class="toggle-title" data-target="list-body">历史会话矩阵 <span class="arrow">▼</span></h2>
+        <div class="collapse-content open" id="list-body" style="height: 100%; display: flex; flex-direction: column;">
+          <div class="list-container" id="list" style="flex:1; overflow-y:auto;"></div>
+        </div>
+      </section>
+    </main>
+
+    <main class="main-content" id="view-logs" style="display:none;">
+      <section class="glass-panel log-card">
+        <h2>实时运行日志</h2>
+        <div class="log-container" id="log-container">
+          <div class="log-line info">[等待系统运行]</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
